@@ -1,14 +1,14 @@
 # encoding: utf-8
 
 # Use:
-# scrapper = CongressScrapper.new
+# scrapper = Scrapper.new
 # scrapper.proposal_with(:title=>"prueba") {|p| import p}
 # scrapper.proposal_with(:title=>"dfsdf", :fetch => 1) {|p| import p}
 
 # TODO: Como usamos limit para que salga del proceso??? Excepciones???
 require 'mechanize'
 
-class CongressScrapper 
+class Scrapper 
 	
 	def initialize
 	  @url = "http://www.congreso.es/portal/page/portal/Congreso/Congreso/Iniciativas/Busqueda%20Avanzada"

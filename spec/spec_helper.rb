@@ -1,11 +1,12 @@
 # encoding: utf-8
 require 'webmock/rspec'
 require 'vcr'
+require 'mechanize'
 
 VCR.config do |c|
   c.cassette_library_dir = 'spec/cassettes'
   c.stub_with :webmock
-  c.default_cassette_options = { :record => :new_episodes }
+  c.default_cassette_options = { :record => :once }
 end
 
 Rspec.configure do |config|
