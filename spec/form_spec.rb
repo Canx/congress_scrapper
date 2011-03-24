@@ -10,8 +10,8 @@ describe "Form submit" do
       params = []
       agent=Mechanize.new
       page=agent.get(url)
-      form=Form.new(page,params)
-      first_page=form.submit
+      form=Form.new(page)
+      first_page=form.submit(params)
       first_page.search("//div[@id='RESULTADOS_BUSQUEDA']").should_not be_empty 
     end
   end

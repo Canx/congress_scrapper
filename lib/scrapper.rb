@@ -12,10 +12,19 @@ class Scrapper
 	
 	def initialize
 	  @url = "http://www.congreso.es/portal/page/portal/Congreso/Congreso/Iniciativas/Busqueda%20Avanzada"
-	  @agent = Mechanize.new
-	  @limit = nil
+    @agent = Mechanize.new
 	end
 	
+  def query(params)
+    @form = Form.new(@url)
+    @first_page = @form.submit(params)
+    initiatives = InitiativeIterator.new(@first_page)
+    while initiatives.has_next?
+       yield initiatives.item
+       initiatives.next_item
+    end
+  end
+
 	def query_with(params, &do_with_proposal) 
     check params if params
     @do_with_proposal = do_with_proposal

@@ -8,14 +8,13 @@
 #   first_page=form.submit
 
 class Form
-  def initialize(page, params)    
-    #check(params)
-    @params = params
+  def initialize(page)    
     @form = page.form_with(:action => /enviarCgiBuscadorAvIniciativas/)
     # TODO: if form is null throw exception
   end
   
-  def submit        
+  def submit(params)
+    #check(params)      
     @form.submit
     # TODO: if submit fails throw exception
   end
