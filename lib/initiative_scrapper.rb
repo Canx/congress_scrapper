@@ -1,5 +1,7 @@
 # encoding: utf-8
 
-class Initiative
-  
+class InitiativeScrapper
+  def initialize
+    
+  end
 end

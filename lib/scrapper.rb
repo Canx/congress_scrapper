@@ -19,9 +19,8 @@ class Scrapper
     @form = Form.new(@url)
     @first_page = @form.submit(params)
     initiatives = InitiativeIterator.new(@first_page)
-    while initiatives.has_next?
-       yield initiatives.item
-       initiatives.next_item
+    initiatives.each do |initiative|
+      yield initiative
     end
   end
 
