@@ -7,15 +7,17 @@ class PageIterator
   end
   
   def each
+    @actual_page = @first_page
+    while has_next? do
+      yield @actual_page
+      next
+    end
+  end
+  
+  def has_next?
     
   end
   
-  
-  def has_next?
-    @actual_page.link_with(:text => /Siguiente/)
-  end
-  
-  # Tenemos que cambiar la actual page!
   def next
     @actual_page = @actual_page.link_with(:text => /Siguiente/)
   end

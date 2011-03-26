@@ -8,8 +8,7 @@ class InitiativeIterator
     pages.each do |current_page|
       initiative_item = @current_page.search("//p [@class='titulo_iniciativa']/a")
       initiative_items.each do |item|
-        InitiativeScrapper.new(item)  
-      #procesar item
+        yield InitiativeScrapper.new(item)
       end
     end
   end

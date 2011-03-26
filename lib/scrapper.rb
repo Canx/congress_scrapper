@@ -24,16 +24,6 @@ class Scrapper
     end
   end
 
-	def query_with(params, &do_with_proposal) 
-    check params if params
-    @do_with_proposal = do_with_proposal
-		@actual_page = first_page
-		while @actual_page do
-			scrap @actual_page
-			next_page
-		end
-	end
-
 	def count
 		@count ||= first_page.search("//*[contains(text(), 'Iniciativas encontradas')]/span").first.text.to_i
 	end
