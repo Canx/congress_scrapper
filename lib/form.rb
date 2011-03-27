@@ -24,8 +24,8 @@ class Form
   def check(params)
     params.each do |header, content|
       case header
-        when (:title) then @form["OBJE"] = content
-				# TODO: if params doesn't exist throw exception
+        when "title" then @form["OBJE"] = content
+        else raise ArgumentError, "Parameter " + header + " not supported."
       end  
     end
   end
