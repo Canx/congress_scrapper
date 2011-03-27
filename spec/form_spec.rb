@@ -24,7 +24,6 @@ describe "Form submit" do
       page=@agent.get(@url)
       form=Form.new(page)
       first_page=form.submit(params)
-      form.form["OBJE"].should == "Proyecto de Ley de Contratos de Crédito al Consumo"
       first_page.search("//div[@class='SUBTITULO_CONTENIDO']/span").text.should == "1"
     end
   end
