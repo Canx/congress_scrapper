@@ -27,6 +27,14 @@ describe "PageIterator" do
   end
   
   it "should return all iniciatives in a multiple page result" do
-    pending
+    VCR.use_cassette("page_multiple46") do
+      params = {"from_date" => "01/01/2010",
+              "to_date" => "01/12/2010",
+              "type" => "Proyecto de ley"}
+      initiatives = []
+      pages=PageIterator.new
+      pages.each_initiative_with(params) { |i| initiatives << i }
+      initiatives.count.should == 46
+    end
   end
 end

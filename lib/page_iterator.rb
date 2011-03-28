@@ -28,7 +28,7 @@ class PageIterator
       # Loop through matched nodes in each page
       @actual_page.search(search_text).each { |node| yield node }
       break if next_page.nil?
-      @actual_page = @agent.get(next_page)
+      @actual_page = @agent.click(next_page)
     end
   end
     
