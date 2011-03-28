@@ -1,38 +1,11 @@
 # external iterator to obtain initiative objects
-class InitiativeIterator
-  def initialize(page)
-    @pages = PageIterator.new(page)
-  end
+class InitiativeScrapper
+  def initialize(page_iterator)
+    @pages = page_iterator
+  end  
   
-  def each
-    pages.each do |current_page|
-      initiative_item = @current_page.search("//p [@class='titulo_iniciativa']/a")
-      initiative_items.each do |item|
-        yield InitiativeScrapper.new(item)
-      end
-    end
+  def scrap
+    @pages.each_iniciative   
   end
-
-  # check if we already are in the last page and in the last initiative
-  def has_next?
-        
-  end
-
-  # return initiative object
-  def item
-    
-  end
-
-  # moves iterator to next initiative
-  def next_item
-
-  end
-
-  private
-
-  def next_page
-    @pages.next
-  end
-
   
 end
