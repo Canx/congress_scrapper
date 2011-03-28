@@ -1,19 +1,10 @@
 # encoding: utf-8
 
 class InitiativeScrapper
-  def initialize
-    
-  end
+  attr_reader :url, :title
   
-  def title
-    
-  end
-  
-  def type 
-    
-  end
-  
-  def resolution
-    
+  def initialize(node, agent)
+    @url=node["href"]
+    @title=node.content
   end
 end
