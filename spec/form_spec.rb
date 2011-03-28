@@ -36,4 +36,24 @@ describe "Form submit" do
       expect { form.submit(params) }.to raise_error(ArgumentError, "Parameter xxx not supported.")
     end
   end
+  
+  it "should return iniciatives of type provided" do
+    VCR.use_cassette "form_type" do
+      params = {"type" => "Iniciativa legislativa popular"}
+      page = @agent.get(@url)
+      form = Form.new(page)
+      first_page = form.submit(params)
+      first_page.search("//p[@class='subtitulo_competencias']").text.should == "Iniciativa legislativa popular."
+    end
+  end
+  
+  it "should return iniciatives from date1 to date2" do
+    VCR.use_cassette "form_date" do
+      params = {"from_date" => "01/01/2010", "to_date" => "01/01/2011"}
+      page = @agent.get(@url)
+      form = Form.new(page)
+      first_page = form.submit(params)
+      first_page.search("//div[@class='SUBTITULO_CONTENIDO']/span").text.should == "31596"
+    end
+  end
 end

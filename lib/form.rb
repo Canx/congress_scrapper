@@ -25,9 +25,13 @@ class Form
     params.each do |header, content|
       case header
         when "title" then @form["OBJE"] = content
+        # TODO: Check types
+        when "type" then @form["SINI"] = content
+        when "from_date" then @form["ddia"], @form["dmes"], @form["dano"] = content.split("/")
+        when "to_date" then @form["hdia"], @form["hmes"], @form["hano"] = content.split("/")
         else raise ArgumentError, "Parameter " + header + " not supported."
       end  
     end
   end
-  
+
 end
