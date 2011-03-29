@@ -5,12 +5,12 @@ require 'date'
 require 'spec/rake/spectask'
 
 spec = Gem::Specification.new do |s|
-  s.name = "congreso_scrapper"
+  s.name = "congress_scrapper"
   s.version = "0.0.1"
   s.author = "Ruben Cancho"
   s.email = "canchete@gmail.com"
   s.homepage = "http://canx.blogspot.com"
-  s.description = s.summary = "Wrapper para acceder a las propuestas del Congreso (congreso.es"
+  s.description = s.summary = "Wrapper para acceder a las propuestas del Congreso (congreso.es)"
   
   s.platform = Gem::Platform::RUBY
   s.has_rdoc = true
@@ -18,7 +18,7 @@ spec = Gem::Specification.new do |s|
   s.summary = SUMMARY
   
   # Uncomment this to add a dependency
-  # s.add_dependency "foo"
+  s.add_dependency "mechanize"
   
   s.require_path = 'lib'
   s.autorequire = GEM

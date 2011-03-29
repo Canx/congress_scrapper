@@ -1,6 +1,6 @@
 # encoding: utf-8
 require 'mechanize'
-require 'initiative_scrapper'
+require 'initiative_factory'
 
 class PageIterator
   
@@ -11,7 +11,7 @@ class PageIterator
   
   def each_initiative_with(params,&block)
     each(".titulo_iniciativa a", params) do |node|
-      initiative = InitiativeScrapper.new(node, @agent)
+      initiative = InitiativeFactory.create(node, @agent)
       block.call(initiative)
     end
   end
