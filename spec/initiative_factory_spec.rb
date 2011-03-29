@@ -17,4 +17,19 @@ describe "InitiativeFactory" do
     end
   end
 
+  it "should return the initiative record date" do
+    pending
+  end
+  
+  it "should return the initiative qualification date, if exists" do
+    pending
+  end
+  
+  it "should return nothing if the qualification date doesn't exist" do
+    pending
+  end
+  
+  it "should return the initiative author, if exists" do
+    pending
+  end
 end
