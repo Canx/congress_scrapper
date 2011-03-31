@@ -1,12 +1,13 @@
 # encoding: utf-8
-require File.dirname(__FILE__) + '/spec_helper'
-require File.dirname(__FILE__) + '/../lib/initiative_factory.rb'
+require File.dirname(__FILE__) + '/../spec_helper'
+require 'scrapper'
+require 'scrapper/initiative_factory'
 
 describe "InitiativeFactory" do
   before(:each) do
       @title = "Moción de reprobación a don Gaspar Zarrías Arévalo"
       @params = {"title" => @title}
-      @pages=PageIterator.new
+      @pages=Scrapper.new
   end
 
   it "should return the initiative title" do

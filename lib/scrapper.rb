@@ -1,8 +1,9 @@
 # encoding: utf-8
 require 'mechanize'
-require 'initiative_factory'
+require 'scrapper/initiative_factory'
+require 'scrapper/form'
 
-class PageIterator
+class Scrapper
   
   def initialize
 	  @url = "http://www.congreso.es/portal/page/portal/Congreso/Congreso/Iniciativas/Busqueda%20Avanzada"

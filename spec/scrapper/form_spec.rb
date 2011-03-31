@@ -1,6 +1,6 @@
 # encoding: utf-8
-require File.dirname(__FILE__) + '/spec_helper'
-require File.dirname(__FILE__) + '/../lib/form.rb'
+require File.dirname(__FILE__) + '/../spec_helper'
+require 'scrapper/form'
 
 describe "Form submit" do
   before(:each) do

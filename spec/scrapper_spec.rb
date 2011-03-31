@@ -1,15 +1,17 @@
 # encoding: utf-8
 require File.dirname(__FILE__) + '/spec_helper'
-require File.dirname(__FILE__) + '/../lib/page_iterator.rb'
+require 'scrapper'
 
-describe "PageIterator" do
-
+describe "Scrapper" do
+  before(:each) do
+    @scrap = Scrapper.new
+  end
+  
   it "should not return results in a empty page result" do
     VCR.use_cassette("page_empty") do
       params = {"from_date" => "01/01/2010", "to_date" => "01/01/2010"}
       initiatives = []
-      pages=PageIterator.new
-      pages.each_initiative_with(params) { |i| initiatives << i }
+      @scrap.each_initiative_with(params) { |i| initiatives << i }
       initiatives.should == []
     end
   end
@@ -20,8 +22,7 @@ describe "PageIterator" do
               "to_date" => "01/05/2010",
               "type" => "Proyecto de ley"}
       initiatives = []
-      pages=PageIterator.new
-      pages.each_initiative_with(params) { |i| initiatives << i }
+      @scrap.each_initiative_with(params) { |i| initiatives << i }
       initiatives.count.should == 22 
     end
   end
@@ -32,8 +33,7 @@ describe "PageIterator" do
               "to_date" => "01/12/2010",
               "type" => "Proyecto de ley"}
       initiatives = []
-      pages=PageIterator.new
-      pages.each_initiative_with(params) { |i| initiatives << i }
+      @scrap.each_initiative_with(params) { |i| initiatives << i }
       initiatives.count.should == 46
     end
   end
