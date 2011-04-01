@@ -27,7 +27,11 @@ describe "InitiativeFactory" do
   end
   
   it "should return the initiative qualification date, if exists" do
-    pending
+    VCR.use_cassette("initiative_title") do
+      initiatives = []
+      @pages.each_initiative_with(@params) { |i| initiatives << i }
+      initiatives.first[:qualified_at].should == Date.new(2010,12,14)
+    end
   end
   
   it "should return nothing if the qualification date doesn't exist" do
