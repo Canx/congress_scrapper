@@ -11,9 +11,9 @@ class Scrapper
   end
   
   def each_initiative_with(params,&block)
-    each(".titulo_iniciativa a", params) do |node|
-      initiative = InitiativeFactory.create(node, @agent)
-      block.call(initiative)
+    each("//div[@class='resultados_competencias']", params) do |node|
+        initiative = InitiativeFactory.create(node)
+        block.call(initiative) if !initiative.nil?
     end
   end
 

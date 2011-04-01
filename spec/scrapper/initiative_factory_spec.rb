@@ -18,8 +18,12 @@ describe "InitiativeFactory" do
     end
   end
 
-  it "should return the initiative record date" do
-    pending
+  it "should return the initiative proposal date" do
+    VCR.use_cassette("initiative_title") do
+      initiatives = []
+      @pages.each_initiative_with(@params) { |i| initiatives << i }
+      initiatives.first[:proposed_at].should == Date.new(2010,12,9)
+    end
   end
   
   it "should return the initiative qualification date, if exists" do
