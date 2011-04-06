@@ -14,7 +14,6 @@ class InitiativeFactory
       date_text = node.search("//p [contains(text(),'Presentado el')]").first.text
       proposed_at = Date.new($3.to_i, $2.to_i, $1.to_i) if date_text && date_text.match(/Presentado\s+el\s+(\d\d)\/(\d\d)\/(\d\d\d\d)/)
       qualified_at = Date.new($3.to_i, $2.to_i, $1.to_i) if date_text && date_text.match(/calificado\s+el\s+(\d\d)\/(\d\d)\/(\d\d\d\d)/)
-      debugger
       return proposal = {:title => title,
                          :url => node_url['href'],
                          :proposed_at => proposed_at,
