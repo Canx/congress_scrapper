@@ -34,6 +34,14 @@ describe "InitiativeFactory" do
     end
   end
   
+  it "should return the iniciative code" do
+    pending
+  end
+  
+  it "should return the tramitation result, if exists" do
+    pending
+  end
+  
   it "should return nothing if the qualification date doesn't exist" do
     pending
   end

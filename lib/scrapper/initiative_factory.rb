@@ -2,8 +2,10 @@
 
 # TODO: Dependiendo de los parámetros y lo que encontremos en el nodo
 #       crearemos una iniciativa o un objeto heredado más concreto (ProyectoDeLey...)
+# TODO: 
 class InitiativeFactory
   def self.create(node)    
+    # TODO: url should be rewriten to be unique doing another search (by code search)
     node_url=node.search(".titulo_iniciativa a").first
     if !node_url.nil?
       # TODO: clean new line characters from title

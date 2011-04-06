@@ -1,51 +1,30 @@
-require 'rubygems' unless ENV['NO_RUBYGEMS']
-require 'rake/gempackagetask'
-require 'rubygems/specification'
-require 'date'
-require 'spec/rake/spectask'
+require 'rubygems'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
+require 'rake'
 
-spec = Gem::Specification.new do |s|
-  s.name = "congress_scrapper"
-  s.version = "0.0.1"
-  s.author = "Ruben Cancho"
-  s.email = "canchete@gmail.com"
-  s.homepage = "http://canx.blogspot.com"
-  s.description = s.summary = "Wrapper para acceder a las propuestas del Congreso (congreso.es)"
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "congress_scrapper"
+  gem.homepage = "http://github.com/Canx/congress_scrapper"
+  gem.license = "MIT"
+  gem.summary = %Q{Wrapper para acceder a las propuestas del Congreso (congreso.es)}
+  gem.description = %Q{Wrapper para acceder a las propuestas del Congreso (congreso.es)}
+  gem.email = "canchete@gmail.com"
+  gem.authors = ["Canx"]
   
-  s.platform = Gem::Platform::RUBY
-  s.has_rdoc = true
-  s.extra_rdoc_files = ["README", "LICENSE", 'TODO']
-  s.summary = SUMMARY
-  
-  # Uncomment this to add a dependency
-  s.add_dependency "mechanize"
-  
-  s.require_path = 'lib'
-  s.autorequire = GEM
-  s.files = %w(LICENSE README Rakefile TODO) + Dir.glob("{lib,spec}/**/*")
+  # Include your dependencies below. Runtime dependencies are required when using your gem,
+  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
+  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
+  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.add_runtime_dependency 'mechanize'
+  gem.add_development_dependency 'rspec'
 end
-
-task :default => :spec
-
-desc "Run specs"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts = %w(-fs --color)
-end
-
-
-Rake::GemPackageTask.new(spec) do |pkg|
-  pkg.gem_spec = spec
-end
-
-desc "install the gem locally"
-task :install => [:package] do
-  sh %{sudo gem install pkg/#{GEM}-#{GEM_VERSION}}
-end
-
-desc "create a gemspec file"
-task :make_spec do
-  File.open("#{GEM}.gemspec", "w") do |file|
-    file.puts spec.to_ruby
-  end
-end
+Jeweler::RubygemsDotOrgTasks.new
